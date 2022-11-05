@@ -1,8 +1,10 @@
 import MemoryItem from "./MemoryItem";
 
+
+
 const MemoriesList = (props) => {    
     return (
-        <div className="masonry-2-col">
+        <div className=" masonry-2-col ">
             {props.memories.map((memory) => (
                 // MemoryItem is a component that takes in a memory object as a prop
                 <MemoryItem
@@ -11,7 +13,7 @@ const MemoriesList = (props) => {
                     title={memory.title}
                     date={memory.date}
                     description={memory.description}
-                />
+               />
             ))}
         </div>
     );
