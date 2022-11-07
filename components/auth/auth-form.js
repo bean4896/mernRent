@@ -64,7 +64,8 @@ function AuthForm() {
   return (
     <>
     <div className="flex flex-col m-auto">
-    <div className="mb-5"><h2 className="text-2xl font-bold text-center text-gray-800 dark:text-white">Login to </h2></div>
+    
+
       <div className="flex lg:flex-row flex-col max-w-[900px] bg-white dark:bg-[#1e1e1e] rounded-lg">
           <div className="mx-auto w-full p-10 rounded-md">
             <h2 className="mb-3">{isLogin ? "Login" : "Sign Up"}</h2>
