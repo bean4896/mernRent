@@ -1,8 +1,18 @@
 import MemoryItem from "./MemoryItem";
+import Masonry from 'react-masonry-css'
 
 const MemoriesList = (props) => {    
+    const breakpointColumnsObj = {
+        default: 2,
+        1100: 2,
+        700: 2,
+        500: 1
+      };    
     return (
-        <div className="columns-2 ">
+        <Masonry
+        breakpointCols={breakpointColumnsObj}
+        className="my-masonry-grid"
+        columnClassName="my-masonry-grid_column">
             {props.memories.map((memory) => (
                 // MemoryItem is a component that takes in a memory object as a prop
                 <MemoryItem
@@ -13,7 +23,7 @@ const MemoriesList = (props) => {
                     description={memory.description}
                />
             ))}
-        </div>
+       </Masonry>
     );
     }
    

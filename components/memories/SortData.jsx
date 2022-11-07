@@ -1,4 +1,5 @@
-const sortDataByDate = (data, way = 'back') => {
+// 按照最新排序
+const sortDataByDate = (data, way = 'order') => {
         if (way === "order") {
             return data.sort(function (a, b) {
                 //这里的time要根据本身的数据来，后面的正则匹配也要根据自己数据来
