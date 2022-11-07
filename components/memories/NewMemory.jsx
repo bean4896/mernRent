@@ -9,6 +9,7 @@ function NewMemory(props) {
   const descriptionInputRef = useRef();
 
 
+
   function submitHandler(event) {
     // Prevents the page from reloading
     event.preventDefault();
@@ -19,6 +20,10 @@ function NewMemory(props) {
     const enteredDate = dateInputRef.current.value;
     const enteredDescription = descriptionInputRef.current.value;
 
+    // spilt the image into an array
+     var pos = enteredImage.lastIndexOf("\\");
+     var filename = enteredImage.substring(pos+1);
+
     //final data object
     const memoryData = {
       title: enteredTitle,
@@ -27,8 +32,9 @@ function NewMemory(props) {
       description: enteredDescription,
     };
         
-    console.log(memoryData);
-    props.onAddMemory(memoryData);
+    // 
+    console.log(memoryData, `../public/images/${filename}`);
+    // props.onAddMemory(memoryData);
   }
 
   return (
