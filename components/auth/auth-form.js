@@ -61,12 +61,19 @@ function AuthForm() {
     }
   }
 
+
   return (
     <>
-    <div className="flex flex-col m-auto">
-    
+      <div className="flex flex-col m-auto">
+        <blockquote className="text-2xl font-semibold italic text-center text-neutral-900 dark:text-neutral-200 mb-5">
+          dasdas
+          <span class="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-pink-500 relative inline-block">
+            <span class="relative text-white">Badge</span>
+          </span>
+          XXXXX
+        </blockquote>
 
-      <div className="flex lg:flex-row flex-col max-w-[900px] bg-white dark:bg-[#1e1e1e] rounded-lg">
+        <div className="flex lg:flex-row flex-col max-w-[900px] bg-white dark:bg-[#1e1e1e] rounded-lg">
           <div className="mx-auto w-full p-10 rounded-md">
             <h2 className="mb-3">{isLogin ? "Login" : "Sign Up"}</h2>
             <form onSubmit={submitHandler}>
@@ -74,7 +81,13 @@ function AuthForm() {
                 <label htmlFor="email" className="block">
                   Your Email
                 </label>
-                <input type="email" className="input_field"  id="email" required ref={emailInputRef} />
+                <input
+                  type="email"
+                  className="input_field"
+                  id="email"
+                  required
+                  ref={emailInputRef}
+                />
               </div>
               <div className="form-control">
                 <label htmlFor="password">Your Password</label>
@@ -88,9 +101,7 @@ function AuthForm() {
               </div>
               <div>
                 {isLogin ? (
-                  <button className="btn block rounded-md gr-btn">
-                    Login
-                  </button>
+                  <button className="btn block rounded-md gr-btn">Login</button>
                 ) : (
                   <button className="btn block rounded-md gr-btn">
                     Create Account
@@ -105,10 +116,15 @@ function AuthForm() {
 
           <div className="bg-yellow-400 mx-auto w-full p-10 lg:rounded-r-lg rounded-b-lg lg:rounded-bl-none">
             <div className="rounded-lg">
-            <h3 className="text-2xl">"We're not on this stage just because of talent or ability. <br />We're up here because of 4 a.m. <br />We're up here because of two-a-days or five-a-days."</h3>
+              <h3 className="text-2xl">
+                "We're not on this stage just because of talent or ability.{" "}
+                <br />
+                We're up here because of 4 a.m. <br />
+                We're up here because of two-a-days or five-a-days."
+              </h3>
             </div>
           </div>
-      </div>
+        </div>
       </div>
     </>
   );

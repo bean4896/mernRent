@@ -60,7 +60,11 @@
   margin-bottom: 30px;
 }
 .btn:hover {
+  transform: translateY(-0.2em);
   opacity: 0.8;
+}
+.btn {
+  transition: all 0.2s ease-in-out;
 }
 .form-control {
   margin-bottom: 2em;

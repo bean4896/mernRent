@@ -14,7 +14,7 @@ const Toggle = () => {
       {theme === 'dark' ? (
         <button
           onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-          className="text-yellow-400 dark:text-yellow-400 bg-yellow-900 shadow-none p-1 focus:outline-none text-lg rounded-md outline-none ring-transparent cursor-pointer"
+          className="btn text-yellow-400 dark:text-yellow-400 bg-yellow-900 shadow-none p-1 focus:outline-none text-lg rounded-md outline-none ring-transparent cursor-pointer"
         >
           <svg
             className="w-6 h-6"
@@ -34,7 +34,7 @@ const Toggle = () => {
       ) : (
         <button
           onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-          className="text-purple-900 bg-purple-400 focus:outline-none shadow-none p-1 text-lg rounded-md outline-none ring-transparent cursor-pointer"
+          className="btn text-purple-900 bg-purple-400 focus:outline-none shadow-none p-1 text-lg rounded-md outline-none ring-transparent cursor-pointer"
         >
           <svg
             className="w-6 h-6"
