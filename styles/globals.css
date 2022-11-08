@@ -1,17 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Open+Sans:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Open+Sans:wght@400;700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer components {
   .nav-container {
-    @apply max-w-[940px] m-auto
+    @apply max-w-[940px] m-auto;
   }
   .footer-container {
-    @apply max-w-[940px] m-auto
+    @apply max-w-[940px] m-auto;
   }
   .btn {
-    @apply px-2 py-1 font-medium
+    @apply px-2 py-1 font-medium;
   }
   /* ... */
 }
@@ -40,7 +40,7 @@
   border-width: 4px;
   border-style: solid;
   border-image: linear-gradient(to right, #fdb927, #552583) 1;
-  @apply bg-white dark:bg-[#1e1e1e]
+  @apply bg-white dark:bg-[#1e1e1e];
 }
 
 .my-masonry-grid {
@@ -56,7 +56,8 @@
 }
 
 /* Style your items */
-.my-masonry-grid_column > div { /* change div to reference your elements you put in <Masonry> */
+.my-masonry-grid_column > div {
+  /* change div to reference your elements you put in <Masonry> */
   margin-bottom: 30px;
 }
 .btn:hover {
@@ -71,7 +72,7 @@
 }
 
 .form-input {
-  @apply block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-offset-gray-100 focus:border-purple-700 sm:text-sm
+  @apply block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-offset-gray-100 focus:border-purple-700 sm:text-sm;
 }
 
 @media (max-width: 800px) {
@@ -88,15 +89,15 @@
 }
 
 .gr-btn {
-  @apply bg-gradient-to-r from-yellow-400 to-purple-700 px-4 py-2 text-white rounded-md
+  @apply bg-gradient-to-r from-yellow-400 to-purple-700 px-4 py-2 text-white rounded-md;
 }
 
 .input_field {
-  @apply block border border-solid border-gray-300 rounded
+  @apply block border border-solid border-gray-300 rounded;
 }
 
 body {
-  font-family: 'Open Sans', 'Poppins', sans-serif;
+  font-family: "Open Sans", "Poppins", sans-serif;
   margin: 0;
 }
 
@@ -106,5 +107,5 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
