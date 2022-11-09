@@ -3,7 +3,6 @@ import type { AppProps } from 'next/app'
 import { ThemeProvider } from 'next-themes'
 import { SessionProvider } from 'next-auth/react'
 import Layout from  '../components/Layout/Layout'
-import { Fragment } from 'react'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

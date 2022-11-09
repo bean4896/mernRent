@@ -47,6 +47,9 @@ function AuthForm() {
         router.replace("/profile");
         // set auth state
       }
+      else if (result.error) {
+        alert(result.error);
+      }
       console.log(result);
       // alert('Password incorrect');
     } else {

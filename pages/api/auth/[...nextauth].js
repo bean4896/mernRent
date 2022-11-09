@@ -1,5 +1,4 @@
 import NextAuth from 'next-auth';
-import { SessionProvider } from "next-auth/react"
 import CredentialsProvider from "next-auth/providers/credentials";
 import { verifyPassword } from '../../../lib/auth';
 import { connectToDatabase } from '../../../lib/db';
@@ -35,7 +34,7 @@ export default NextAuth({
 
                 // If password is incorrect, return null
                 if (!isValid) {
-                    throw new Error('Could not log you in!');
+                    throw new Error('Incorrect Password!');
                 }
 
                 client.close();

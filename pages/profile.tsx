@@ -2,7 +2,11 @@ import UserProfile from '../components/profile/user-profile';
 import { getSession } from 'next-auth/react';
 
 function ProfilePage() {
-  return <UserProfile />;
+  return <>
+  <div className="bg-[#f3f4f6] dark:bg-black min-h-screen">
+  <UserProfile />
+  </div>
+  </>;
 }
 
 export async function getServerSideProps(context) {

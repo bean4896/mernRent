@@ -1,7 +1,7 @@
 import React from "react";
 import Masonry from "react-masonry-css";
 
-const kobe_shoes = [
+const kobe_items = [
   {
     id: 1,
     image:
@@ -113,7 +113,7 @@ const kobe_shoes = [
   },
 ];
 
-function Shoes() {
+function items() {
   const breakpointColumnsObj = {
     default: 2,
     1100: 2,
@@ -127,19 +127,19 @@ function Shoes() {
         className="my-masonry-grid"
         columnClassName="my-masonry-grid_column"
       >
-        {kobe_shoes.map((shoe) => (
+        {kobe_items.map((item) => (
           <div className="max-w-[400px]">
             <div className="group relative block bg-gray-900 rounded-md">
               <img
                 className="absolute rounded-md inset-0 h-full w-full object-cover group-hover:opacity-50"
-                src={shoe.image}
-                alt={shoe.name}
+                src={item.image}
+                alt={item.name}
               />
               <div className="relative p-2">
                 <div className="mt-40">
                   <div className="translate-y-8 transform opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100">
                     <div className="p-2">
-                      <p className="text-sm text-white">{shoe.description}</p>
+                      <p className="text-sm text-white">{item.description}</p>
                     </div>
                   </div>
                 </div>
@@ -152,4 +152,4 @@ function Shoes() {
   );
 }
 
-export default Shoes;
+export default items;

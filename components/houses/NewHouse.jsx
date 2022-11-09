@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-function NewMemory(props) {
+function NewHouse(props) {
   // useref is a hook that allows us to access the value of an input element
   const titleInputRef = useRef();
   const imageInputRef = useRef();
@@ -22,25 +22,26 @@ function NewMemory(props) {
     var filename = enteredImage.substring(pos + 1);
 
     //final data object
-    const memoryData = {
+    const houseData = {
       title: enteredTitle,
       image: enteredImage,
       date: enteredDate,
       description: enteredDescription,
     };
 
-    //
-    console.log(memoryData, `../public/images/${filename}`);
-    // props.onAddMemory(memoryData);
+    // //
+    // console.log(houseData, `../public/images/${filename}`);
+    // Send this to the backend
+    props.onAddhouse(houseData);
   }
 
   return (
     <div className="flex items-center justify-center p-12">
-      <div className="mx-auto w-full p-10 max-w-[550px] gr_border">
+      <div className="mx-auto w-full p-10 max-w-[550px] containerBorder bg-white">
         <form>
           <div className="form-control">
             <label htmlFor="title" className="block">
-              Memory Title
+              house Title
             </label>
             <input
               type="text"
@@ -52,19 +53,20 @@ function NewMemory(props) {
           </div>
           <div className="form-control">
             <label htmlFor="image" className="block">
-              Memory Image
+              house Image
             </label>
             <input
-              type="file"
+              type="text"
+              required
               id="image"
               name="image"
-              accept="image/png, image/jpeg"
+              className="form-input"
               ref={imageInputRef}
             />
           </div>
           <div className="form-control">
             <label htmlFor="date" className="block">
-              Memory Date
+              Avaliable Date
             </label>
             <input
               type="date"
@@ -76,7 +78,7 @@ function NewMemory(props) {
           </div>
           <div className="form-control">
             <label htmlFor="description" className="block">
-              Memory Description
+              Description
             </label>
             <textarea
               id="description"
@@ -87,7 +89,7 @@ function NewMemory(props) {
             ></textarea>
           </div>
           <div className="form-actions">
-            <button onClick={submitHandler}>Add Memory</button>
+            <button className='btn' onClick={submitHandler}>Add house</button>
           </div>
         </form>
       </div>
@@ -95,4 +97,4 @@ function NewMemory(props) {
   );
 }
 
-export default NewMemory;
+export default NewHouse;

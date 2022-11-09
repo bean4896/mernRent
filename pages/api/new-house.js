@@ -8,11 +8,11 @@ async function handler(req, res) {
     const data = req.body;
     // connect to db
     const client = await MongoClient.connect(
-      'mongodb+srv://iverson3:Slowhand.1996@test-one.bvlhpok.mongodb.net/memories?retryWrites=true&w=majority'
+      'mongodb+srv://iverson3:Slowhand.1996@test-one.bvlhpok.mongodb.net/house?retryWrites=true&w=majority'
     );
     const db = client.db(); 
 
-    const meetupsCollection = db.collection('memories');
+    const meetupsCollection = db.collection('property');
 
     const result = await meetupsCollection.insertOne(data);
 
@@ -20,7 +20,7 @@ async function handler(req, res) {
 
     client.close();
 
-    res.status(201).json({ message: 'memories inserted!' });
+    res.status(201).json({ message: 'property inserted!' });
   }
 }
 

@@ -20,11 +20,11 @@ function memoryItem(props) {
     <Card>
       <div className="mx-auto">
         <img
-          className="w-auto rounded-lg relative bottom-6"
+          className="rounded-lg w-full"
           src={props.image}
           alt={props.title}
         />
-        <h3 className="text-xl font-bold">{props.title}</h3>
+        <h3 className="text-xl font-bold mt-2">{props.title}</h3>
         <div className="items-center my-2 flex-row flex">
           <div className="flew-row flex">
             <svg
