@@ -22,16 +22,6 @@ async function createUser(email, password) {
 
 function AuthForm() {
 
-  //formik form
-  const {values, errors, touched, handleBlur, handleChange, handleSubmit} = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-    },
-     validationSchema: basicSchema,
-     submitHandler,
-  });
-
   // get input data
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
@@ -44,17 +34,49 @@ function AuthForm() {
   }
 
   // check if is login or signup
-  async function submitHandler(event) {
-    event.preventDefault();
-    const enteredEmail = emailInputRef.current.value;
-    const enteredPassword = passwordInputRef.current.value;
+  // async function submitHandler(event) {
+  //   event.preventDefault();
+  //   const enteredEmail = emailInputRef.current.value;
+  //   const enteredPassword = passwordInputRef.current.value;
 
+  //   if (isLogin) {
+  //     //login user
+  //     const result = await signIn("credentials", {
+  //       redirect: false,
+  //       email: enteredEmail,
+  //       password: enteredPassword,
+  //     });
+  //     if (!result.error) {
+  //       router.replace("/");
+  //       // set auth state
+  //     }
+  //     else if (result.error) {
+  //       alert(result.error);
+  //     }
+  //     console.log(result);
+  //     // alert('Password incorrect');
+  //   } else {
+  //     //create user
+  //     try {
+  //       const result = await createUser(enteredEmail, enteredPassword);
+  //       console.log(result);
+  //     } catch (error) {
+  //       console.log(error);
+  //       alert(error.message);
+  //     }
+  //   }
+  // }
+
+  const onSubmit = async (values, actions) => {
+    // console.log(values.email);
+    console.log(actions);
+    await new Promise((resolve) => setTimeout(resolve, 200));
     if (isLogin) {
       //login user
       const result = await signIn("credentials", {
         redirect: false,
-        email: enteredEmail,
-        password: enteredPassword,
+        email: values.email,
+        password: values.password,
       });
       if (!result.error) {
         router.replace("/");
@@ -68,14 +90,25 @@ function AuthForm() {
     } else {
       //create user
       try {
-        const result = await createUser(enteredEmail, enteredPassword);
+        const result = await createUser(values.email, values.password);
         console.log(result);
       } catch (error) {
         console.log(error);
         alert(error.message);
       }
     }
-  }
+    actions.resetForm();
+  };
+    //formik form
+    const {values, errors, touched, handleBlur, isSubmitting, handleChange, handleSubmit} = useFormik({
+      initialValues: {
+        email: "",
+        password: "",
+      },
+       validationSchema: basicSchema,
+       onSubmit,
+    });
+  
 
  console.log(errors);
 
@@ -93,7 +126,8 @@ function AuthForm() {
         <div className="flex lg:flex-row flex-col max-w-[900px] bg-white dark:bg-[#1e1e1e] rounded-lg">
           <div className="mx-auto w-full p-10 rounded-md">
             <h2 className="mb-3">{isLogin ? "Login" : "Sign Up"}</h2>
-            <form onSubmit={submitHandler}>
+
+            <form onSubmit={handleSubmit}>
               <div className="form-control">
                 <label htmlFor="email" className="block" >
                   Your Email
@@ -108,8 +142,9 @@ function AuthForm() {
                   required
                   ref={emailInputRef}
                 />
-                {errors.email && touched.email && <p className="text-red-500">{errors.email}</p>}
+                {errors.email && touched.email && <div className="max-w-50"><p className="text-red-500">{errors.email}</p></div>}
               </div>
+
               <div className="form-control">
                 <label htmlFor="password">Your Password</label>
                 <input
@@ -124,25 +159,29 @@ function AuthForm() {
                 />
                 {errors.password && touched.password && <p className="text-red-500">{errors.password}</p>}
               </div>
+
               <div>
                 {isLogin ? (
-                  <button type='submit' className="btn block rounded-md gr-btn">Login</button>
+                  <button disabled={isSubmitting} type='submit' className="btn block rounded-md gr-btn">Login</button>
                 ) : (
-                  <button type='submit' className="btn block rounded-md gr-btn">
+                  <div>
+                  <button disabled={isSubmitting} type='submit' className="btn block rounded-md gr-btn">
                     Create Account
                   </button>
+                  </div>
                 )}
                 <button className="btn mt-5 " onClick={switchAuthModeHandler}>
                   Switch to {isLogin ? "Sign Up" : "Login"}
                 </button>
               </div>
             </form>
+
           </div>
 
           <div className="bg-yellow-400 mx-auto w-full p-10 lg:rounded-r-lg rounded-b-lg lg:rounded-bl-none">
             <div className="rounded-lg">
               <h3 className="text-2xl">
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+             Login with Crypto Wallet
                 <br />
               </h3>
             </div>
