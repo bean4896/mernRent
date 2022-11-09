@@ -32,6 +32,10 @@
     }
   }
 }
+*:focus {outline:none}
+.input-error {
+  @apply text-red-500 border-red-500 rounded-md;
+}
 
 .btn {
   @apply px-2 py-1 font-bold bg-[#ebfbee] rounded-md text-[#46dd66] dark:bg-[#1c2c26] text-[#46dd66]
@@ -100,7 +104,7 @@
 }
 
 .input_field {
-  @apply block border border-solid border-gray-300 rounded;
+  @apply border border-[2px] p-2 rounded-md;
 }
 
 body {

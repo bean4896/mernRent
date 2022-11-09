@@ -25,7 +25,7 @@ const Navbar = () => {
         <nav className="flex flex-row p-5 mx-auto items-center justify-between">
           <div>
       <Link href="/" className={router.pathname == "/" ? "Nav" : "Nav"}>
-           House
+          Mern House
       </Link>
           </div>
 
@@ -34,7 +34,7 @@ const Navbar = () => {
               {/* {session && <div>{session.user.email}</div>} */}
 
               <Link href="/nft">
-                <button className={router.pathname == "/nft" ? "btn_active" : "btn"}>
+                <button className={router.pathname === "/nft" ? "btn_active" : "btn"}>
                 <svg className="w-6 h-6" viewBox="0 0 129 129" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M28.4749 65.9339L64.3849 7.28394L100.295 65.9339L64.3849 86.8539L28.4749 65.9339Z" fill="currentColor"/>
 <path d="M64.3849 93.444L99.1449 71.864L64.3849 121.284L28.8049 71.864L64.3849 93.444Z" fill="currentColor"/>
@@ -45,7 +45,7 @@ const Navbar = () => {
 
               {session && (
                 <Link href="/newhouse">
-                  <button className={router.pathname == "/newhouse" ? "btn_active" : "btn"}>
+                  <button className={router.pathname === "/newhouse" ? "btn_active" : "btn"}>
                     Add House
                   </button>
                 </Link>
@@ -53,7 +53,7 @@ const Navbar = () => {
 
               {!session && (
                 <Link href="/auth">
-                  <button className={router.pathname == "/auth" ? "btn_active" : "btn"}>
+                  <button className={router.pathname === "/auth" ? "btn_active" : "btn"}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -85,7 +85,7 @@ const Navbar = () => {
 
               {session && (
                 <Link href="/profile">
-                  <button className={router.pathname == "/profile" ? "btn_active" : "btn"}>
+                  <button className={router.pathname === "/profile" ? "btn_active" : "btn"}>
                     Profile
                   </button>
                 </Link>

@@ -1,6 +1,8 @@
 import { useState, useRef } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
+import { useFormik } from "formik";
+import { basicSchema } from "../../lib/schemas";
 
 async function createUser(email, password) {
   const response = await fetch("/api/auth/db", {
@@ -19,10 +21,21 @@ async function createUser(email, password) {
 }
 
 function AuthForm() {
+
+  //formik form
+  const {values, errors, touched, handleBlur, handleChange, handleSubmit} = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+     validationSchema: basicSchema,
+     submitHandler,
+  });
+
   // get input data
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
-  const [isLogin, setIsLogin] = useState("");
+  const [isLogin, setIsLogin] = useState("true");
   const router = useRouter();
 
   function switchAuthModeHandler(e) {
@@ -64,6 +77,7 @@ function AuthForm() {
     }
   }
 
+ console.log(errors);
 
   return (
     <>
@@ -81,32 +95,40 @@ function AuthForm() {
             <h2 className="mb-3">{isLogin ? "Login" : "Sign Up"}</h2>
             <form onSubmit={submitHandler}>
               <div className="form-control">
-                <label htmlFor="email" className="block">
+                <label htmlFor="email" className="block" >
                   Your Email
                 </label>
                 <input
+                  onBlur={handleBlur}
+                  value={values.email}
+                  onChange={handleChange}
                   type="email"
-                  className="input_field"
+                  className={errors.email ? "block input_field input-error" : "block input_field"}
                   id="email"
                   required
                   ref={emailInputRef}
                 />
+                {errors.email && touched.email && <p className="text-red-500">{errors.email}</p>}
               </div>
               <div className="form-control">
                 <label htmlFor="password">Your Password</label>
                 <input
+                  value={values.password}
+                  onBlur={handleBlur}
+                  onChange={handleChange}
                   type="password"
                   id="password"
-                  className="block input_field"
+                  className={errors.password ? "block input_field input-error" : "block input_field"}
                   required
                   ref={passwordInputRef}
                 />
+                {errors.password && touched.password && <p className="text-red-500">{errors.password}</p>}
               </div>
               <div>
                 {isLogin ? (
-                  <button className="btn block rounded-md gr-btn">Login</button>
+                  <button type='submit' className="btn block rounded-md gr-btn">Login</button>
                 ) : (
-                  <button className="btn block rounded-md gr-btn">
+                  <button type='submit' className="btn block rounded-md gr-btn">
                     Create Account
                   </button>
                 )}

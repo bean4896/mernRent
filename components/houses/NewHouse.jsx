@@ -1,13 +1,26 @@
 import { useRef } from "react";
 import { useRouter } from "next/router";
-
-
+import { useFormik } from "formik";
 
 function NewHouse(props) {
+  const formik = useFormik({
+    initialValues: {
+      title: "",
+      image: "",
+      date: "",
+      price: "",
+      address: "",
+      area:"",
+      description: "",
+  },
+});
   // useref is a hook that allows us to access the value of an input element
   const titleInputRef = useRef();
   const imageInputRef = useRef();
   const dateInputRef = useRef();
+  const priceInputRef = useRef();
+  const areaInputRef = useRef();
+  const addressInputRef = useRef();
   const descriptionInputRef = useRef();
 
   const router = useRouter();
@@ -21,6 +34,9 @@ function NewHouse(props) {
     const enteredImage = imageInputRef.current.value;
     const enteredDate = dateInputRef.current.value;
     const enteredDescription = descriptionInputRef.current.value;
+    const enteredPrice = priceInputRef.current.value;
+    const enteredArea = areaInputRef.current.value;
+    const enteredAddress = addressInputRef.current.value;
 
     // spilt the image into an array
     // var pos = enteredImage.lastIndexOf("\\");
@@ -32,21 +48,34 @@ function NewHouse(props) {
       image: enteredImage,
       date: enteredDate,
       description: enteredDescription,
+      address: enteredAddress,
+      price: enteredPrice,
+      area: enteredArea,
     };
 
     // //
     // console.log(houseData, `../public/images/${filename}`);
     // Send this to the backend
 
-    if (enteredTitle.trim() && enteredImage.trim() && enteredDate.trim() && enteredDescription.trim()) {
-      props.onAddHouse(houseData);
-      alert('House Added');
+    if (
+      enteredTitle.trim() &&
+      enteredImage.trim() &&
+      enteredDate.trim() &&
+      enteredDescription.trim() &&
+      enteredPrice.trim() &&
+      enteredArea.trim() &&
+      enteredAddress.trim()
+    ) {
+      console.log(houseData);
+      // props.onAddHouse(houseData);
+      alert("House Added");
       router.push("/");
-    }
-    else {
+    } else {
       alert("Please fill out all fields");
     }
   }
+
+  console.log(formik);
 
   return (
     <div className="flex items-center justify-center p-12">
@@ -54,7 +83,7 @@ function NewHouse(props) {
         <form>
           <div className="form-control">
             <label htmlFor="title" className="block">
-              house Title
+              house Name
             </label>
             <input
               type="text"
@@ -89,6 +118,71 @@ function NewHouse(props) {
               ref={dateInputRef}
             />
           </div>
+
+          <div className="form-control">
+            <label htmlFor="Area" className="block">
+              Area
+            </label>
+            <p>
+              <input
+                type="checkbox"
+                required
+                name='area'
+                value="downtown"
+                id="Area"
+                ref={areaInputRef}
+              />
+              Downtown
+            </p>
+            <p>
+              <input
+                type="checkbox"
+                required
+                name='area'
+                value='red'
+                id="Area"
+                ref={areaInputRef}
+              />
+              Red Line
+            </p>
+            <p>
+              <input
+                type="checkbox"
+                required
+                id="Area"
+                name="area"
+                value="purple"
+                ref={areaInputRef}
+              />
+              Purple Line
+            </p>
+          </div>
+
+          <div className="form-control">
+            <label htmlFor="Price" className="block">
+              Price:
+            </label>
+            <input
+              type="number"
+              required
+              id="Price"
+              className="form-input"
+              ref={priceInputRef}
+            />
+          </div>
+          <div className="form-control">
+            <label htmlFor="Address" className="block">
+              Address:
+            </label>
+            <input
+              type="text"
+              required
+              id="address"
+             className="form-input"
+              ref={addressInputRef}
+            />
+          </div>
+
           <div className="form-control">
             <label htmlFor="description" className="block">
               Description
@@ -102,7 +196,15 @@ function NewHouse(props) {
             ></textarea>
           </div>
           <div className="form-actions">
-            <button className='btn' type='submit' onClick={submitHandler} data-bs-toggle="modal" data-bs-target="#exampleModal">Add house</button>
+            <button
+              className="btn"
+              type="submit"
+              onClick={submitHandler}
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
+              Add house
+            </button>
           </div>
         </form>
       </div>

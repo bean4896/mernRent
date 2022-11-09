@@ -19,9 +19,8 @@ function memoryItem(props) {
   return (
     <Card>
       <div className="mx-auto">
-
         <img
-          className="rounded-lg w-full"
+          className="rounded-t-md w-full"
           src={props.image}
           alt={props.title}
         />
