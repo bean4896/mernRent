@@ -21,7 +21,7 @@ function NewhousePage() {
   return (
     <>
       <div className="bg-[#f3f4f6] dark:bg-black min-h-screen">
-        <NewHouse onAddhouse={addhouseHandler} />
+        <NewHouse onAddHouse={addhouseHandler} />
       </div>
     </>
   );

@@ -37,6 +37,10 @@
   @apply px-2 py-1 font-bold bg-[#ebfbee] rounded-md text-[#46dd66] dark:bg-[#1c2c26] text-[#46dd66]
 }
 
+.btn_active {
+  @apply px-2 py-1 font-bold bg-[#1c2c26] rounded-md text-[#46dd66] dark:bg-[#84ceb356] text-[#46dd66]
+}
+
 .containerBorder {
   border-width: 1px;
   border-style: solid;
@@ -55,17 +59,23 @@
   padding-left: 30px; /* gutter size */
   background-clip: padding-box;
 }
-
+.Nav_active {
+  font-weight: bold;
+  color: #46dd66;
+}
+.Nav {
+  font-weight: bold;
+}
 /* Style your items */
 .my-masonry-grid_column > div {
   /* change div to reference your elements you put in <Masonry> */
   margin-bottom: 30px;
 }
-.btn:hover {
+.btn:hover, .btn_active:hover {
   transform: translateY(-0.2em);
   opacity: 0.8;
 }
-.btn {
+.btn, .btn_active {
   transition: all 0.2s ease-in-out;
 }
 .form-control {

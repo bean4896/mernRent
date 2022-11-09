@@ -1,5 +1,4 @@
 import Toggle from "./toggle";
-import { useEffect } from "react";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
@@ -25,9 +24,9 @@ const Navbar = () => {
       <div className="nav-container">
         <nav className="flex flex-row p-5 mx-auto items-center justify-between">
           <div>
-            <Link href="/">
-              <h1>MERN House</h1>
-            </Link>
+      <Link href="/" className={router.pathname == "/" ? "Nav" : "Nav"}>
+           House
+      </Link>
           </div>
 
           <div className="flex flex-row align-center items-center">
@@ -35,7 +34,7 @@ const Navbar = () => {
               {/* {session && <div>{session.user.email}</div>} */}
 
               <Link href="/nft">
-                <button className="btn focus:outline-none shadow-none p-1 text-lg rounded-md outline-none ring-transparent cursor-pointer">
+                <button className={router.pathname == "/nft" ? "btn_active" : "btn"}>
                 <svg className="w-6 h-6" viewBox="0 0 129 129" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M28.4749 65.9339L64.3849 7.28394L100.295 65.9339L64.3849 86.8539L28.4749 65.9339Z" fill="currentColor"/>
 <path d="M64.3849 93.444L99.1449 71.864L64.3849 121.284L28.8049 71.864L64.3849 93.444Z" fill="currentColor"/>
@@ -46,7 +45,7 @@ const Navbar = () => {
 
               {session && (
                 <Link href="/newhouse">
-                  <button className="btn rounded-md ">
+                  <button className={router.pathname == "/newhouse" ? "btn_active" : "btn"}>
                     Add House
                   </button>
                 </Link>
@@ -54,7 +53,7 @@ const Navbar = () => {
 
               {!session && (
                 <Link href="/auth">
-                  <button className="btn focus:outline-none shadow-none p-1 text-lg rounded-md outline-none ring-transparent cursor-pointer">
+                  <button className={router.pathname == "/auth" ? "btn_active" : "btn"}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -86,7 +85,7 @@ const Navbar = () => {
 
               {session && (
                 <Link href="/profile">
-                  <button className="btn rounded-md">
+                  <button className={router.pathname == "/profile" ? "btn_active" : "btn"}>
                     Profile
                   </button>
                 </Link>

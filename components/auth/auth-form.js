@@ -44,7 +44,7 @@ function AuthForm() {
         password: enteredPassword,
       });
       if (!result.error) {
-        router.replace("/profile");
+        router.replace("/");
         // set auth state
       }
       else if (result.error) {
@@ -110,7 +110,7 @@ function AuthForm() {
                     Create Account
                   </button>
                 )}
-                <button type="button btn pt-5 " onClick={switchAuthModeHandler}>
+                <button className="btn mt-5 " onClick={switchAuthModeHandler}>
                   Switch to {isLogin ? "Sign Up" : "Login"}
                 </button>
               </div>
@@ -120,10 +120,8 @@ function AuthForm() {
           <div className="bg-yellow-400 mx-auto w-full p-10 lg:rounded-r-lg rounded-b-lg lg:rounded-bl-none">
             <div className="rounded-lg">
               <h3 className="text-2xl">
-                "We're not on this stage just because of talent or ability.{" "}
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
                 <br />
-                We're up here because of 4 a.m. <br />
-                We're up here because of two-a-days or five-a-days."
               </h3>
             </div>
           </div>
