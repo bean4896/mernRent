@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { getSession } from 'next-auth/react';
 
 
+
 const LoginPage = () => {
         const [isLoading, setIsLoading] = useState(true);
         useEffect(() => {
@@ -23,7 +24,7 @@ const LoginPage = () => {
         </div>
     }
     return (
-        <div className='bg-[#e5e7eb] dark:bg-black min-h-[85VH] flex align-center'>
+        <div className='bg-[#f3f4f6] dark:bg-black min-h-[85VH] flex align-center'>
         <AuthForm />
         </div>
     );

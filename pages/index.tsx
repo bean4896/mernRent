@@ -11,7 +11,7 @@ function Home(props) {
   const sortedhouses = useMemo(() => sortedMemo, [sortedMemo]);
   return (
     <Fragment>
-    <div className="max-w-[940px] mt-10 m-auto">
+    <div className="max-w-[1140px] mt-10 m-auto">
       <Head>
         <title>Next houses</title>
         <meta name="description"
@@ -37,11 +37,16 @@ export async function getStaticProps() {
       houses: houses.map(house => ({
         title: house.title,
         image: house.image,
+        address: house.address,
+        phone: house.phone,
+        area: house.area,
+        price: house.price,
         date: house.date,
         description: house.description,
         id: house._id.toString()
       }))
-    }
+    },
+    revalidate: 10
   }
 }
 

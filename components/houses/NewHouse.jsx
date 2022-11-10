@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useRouter } from "next/router";
 import { useFormik } from "formik";
 
@@ -19,11 +19,13 @@ function NewHouse(props) {
   const imageInputRef = useRef();
   const dateInputRef = useRef();
   const priceInputRef = useRef();
-  const areaInputRef = useRef();
   const addressInputRef = useRef();
   const descriptionInputRef = useRef();
+  const phoneInputRef = useRef();
 
   const router = useRouter();
+
+  const [area, setArea] = useState();
 
   function submitHandler(event) {
     // Prevents the page from reloading
@@ -33,9 +35,10 @@ function NewHouse(props) {
     const enteredTitle = titleInputRef.current.value;
     const enteredImage = imageInputRef.current.value;
     const enteredDate = dateInputRef.current.value;
+    const enteredPhone = phoneInputRef.current.value;
     const enteredDescription = descriptionInputRef.current.value;
     const enteredPrice = priceInputRef.current.value;
-    const enteredArea = areaInputRef.current.value;
+    const enteredArea = area;
     const enteredAddress = addressInputRef.current.value;
 
     // spilt the image into an array
@@ -47,6 +50,7 @@ function NewHouse(props) {
       title: enteredTitle,
       image: enteredImage,
       date: enteredDate,
+      phone: enteredPhone,
       description: enteredDescription,
       address: enteredAddress,
       price: enteredPrice,
@@ -63,11 +67,12 @@ function NewHouse(props) {
       enteredDate.trim() &&
       enteredDescription.trim() &&
       enteredPrice.trim() &&
-      enteredArea.trim() &&
       enteredAddress.trim()
     ) {
       console.log(houseData);
-      // props.onAddHouse(houseData);
+
+      // send data to the backend
+      props.onAddHouse(houseData);
       alert("House Added");
       router.push("/");
     } else {
@@ -75,7 +80,7 @@ function NewHouse(props) {
     }
   }
 
-  console.log(formik);
+  // console.log(formik);
 
   return (
     <div className="flex items-center justify-center p-12">
@@ -93,6 +98,7 @@ function NewHouse(props) {
               ref={titleInputRef}
             />
           </div>
+          
           <div className="form-control">
             <label htmlFor="image" className="block">
               house Image Url
@@ -106,6 +112,7 @@ function NewHouse(props) {
               ref={imageInputRef}
             />
           </div>
+
           <div className="form-control">
             <label htmlFor="date" className="block">
               Avaliable Date
@@ -120,43 +127,36 @@ function NewHouse(props) {
           </div>
 
           <div className="form-control">
-            <label htmlFor="Area" className="block">
-              Area
+            <label htmlFor="phone" className="block">
+              Contact Number
             </label>
-            <p>
-              <input
-                type="checkbox"
-                required
-                name='area'
-                value="downtown"
-                id="Area"
-                ref={areaInputRef}
-              />
-              Downtown
-            </p>
-            <p>
-              <input
-                type="checkbox"
-                required
-                name='area'
-                value='red'
-                id="Area"
-                ref={areaInputRef}
-              />
-              Red Line
-            </p>
-            <p>
-              <input
-                type="checkbox"
-                required
-                id="Area"
-                name="area"
-                value="purple"
-                ref={areaInputRef}
-              />
-              Purple Line
-            </p>
+            <input
+              type="tel"
+              required
+              id="phone"
+              pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+              className="form-input"
+              ref={phoneInputRef}
+            />
           </div>
+
+  <fieldset className="form-control">
+    <legend>Area: {area}</legend>
+    <div>
+      <input type="radio" id="downtown" name="area" value="downtown" onChange={e=>setArea(e.target.value)}  />
+      <label className='ml-2' htmlFor="Downtown">Downtown</label>
+    </div>
+
+    <div>
+      <input type="radio" id="purpleline" name="area" value="purpleline" onChange={e=>setArea(e.target.value)}  />
+      <label className='ml-2' htmlFor="purpleline">Purple Line</label>
+    </div>
+
+    <div>
+      <input type="radio" id="redline" name="area" value="redline" onChange={e=>setArea(e.target.value)} />
+      <label className='ml-2' htmlFor="redline">Red Line</label>
+    </div>
+</fieldset>
 
           <div className="form-control">
             <label htmlFor="Price" className="block">

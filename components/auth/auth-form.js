@@ -3,7 +3,9 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useFormik } from "formik";
 import { basicSchema } from "../../lib/schemas";
+import { getStaticProps } from "../../pages";
 
+// fetch db and create user
 async function createUser(email, password) {
   const response = await fetch("/api/auth/db", {
     method: "POST",
@@ -17,10 +19,41 @@ async function createUser(email, password) {
   });
   const data = await response.json();
   console.log(data.message);
-  alert(data.message);
+  // alert(data.message);
 }
 
 function AuthForm() {
+
+  const [showModal, setShowModal] = useState(false);
+  const [errorModal, setErrorModal] = useState(false);
+
+  const closeModalHandler = (e) => {
+    e.preventDefault();
+    setIsLogin(true);
+    setShowModal("");
+    setErrorModal("");
+  };
+
+  const Modal = (props) => {
+    return (
+      <div
+        className="bg-slate-800 bg-opacity-50 flex justify-center items-center absolute top-0 right-0 bottom-0 left-0 z-10"
+        onClick={closeModalHandler}
+      >
+        <div className="bg-white px-16 py-14 rounded-md text-center">
+          <h2 className={errorModal ? "text-xl mb-4 font-bold text-red-500" : 'text-xl mb-4 font-bold text-green-500'}>
+            {props.title}
+          </h2>
+          <button
+            className={errorModal ? "btn_error px-4 py-2 rounded-md text-md text-white" : "btn px-4 py-2 rounded-md text-md text-white bg-slate-500"}
+            onClick={closeModalHandler}
+          >
+            {errorModal ? 'Close' : 'Login now'}
+          </button>
+        </div>
+      </div>
+    );
+  };
 
   // get input data
   const emailInputRef = useRef();
@@ -69,10 +102,10 @@ function AuthForm() {
 
   const onSubmit = async (values, actions) => {
     // console.log(values.email);
-    console.log(actions);
+    // console.log(actions);
     await new Promise((resolve) => setTimeout(resolve, 200));
     if (isLogin) {
-      //login user
+      //check login user
       const result = await signIn("credentials", {
         redirect: false,
         email: values.email,
@@ -81,9 +114,9 @@ function AuthForm() {
       if (!result.error) {
         router.replace("/");
         // set auth state
-      }
-      else if (result.error) {
-        alert(result.error);
+      } else if (result.error) {
+        setErrorModal(true);
+        setShowModal(true);
       }
       console.log(result);
       // alert('Password incorrect');
@@ -91,6 +124,8 @@ function AuthForm() {
       //create user
       try {
         const result = await createUser(values.email, values.password);
+        setErrorModal(false);
+        setShowModal(true);
         console.log(result);
       } catch (error) {
         console.log(error);
@@ -99,37 +134,45 @@ function AuthForm() {
     }
     actions.resetForm();
   };
-    //formik form
-    const {values, errors, touched, handleBlur, isSubmitting, handleChange, handleSubmit} = useFormik({
-      initialValues: {
-        email: "",
-        password: "",
-      },
-       validationSchema: basicSchema,
-       onSubmit,
-    });
-  
+  //formik form
+  const {
+    values,
+    errors,
+    touched,
+    handleBlur,
+    isSubmitting,
+    handleChange,
+    handleSubmit,
+  } = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: basicSchema,
+    onSubmit,
+  });
 
- console.log(errors);
+  // console.log(errors);
 
   return (
     <>
+      {showModal && <Modal title={errorModal ? 'Password or Email Incorrect' : 'Register Success!' }/>}
+      {/* <Modal title='title haha' /> */}
       <div className="flex flex-col m-auto">
         <blockquote className="text-2xl font-semibold italic text-center text-neutral-900 dark:text-neutral-200 mb-5">
-          dasdas
-          <span class="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-pink-500 relative inline-block">
-            <span class="relative text-white">Badge</span>
+          <span class="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-green-500 dark:before:bg-[#1c2c26] relative inline-block">
+            <span className="relative text-white dark:text-[#46dd66] ">
+              Login to Add Items
+            </span>
           </span>
-          XXXXX
         </blockquote>
-
         <div className="flex lg:flex-row flex-col max-w-[900px] bg-white dark:bg-[#1e1e1e] rounded-lg">
           <div className="mx-auto w-full p-10 rounded-md">
             <h2 className="mb-3">{isLogin ? "Login" : "Sign Up"}</h2>
 
             <form onSubmit={handleSubmit}>
               <div className="form-control">
-                <label htmlFor="email" className="block" >
+                <label htmlFor="email" className="block">
                   Your Email
                 </label>
                 <input
@@ -137,12 +180,20 @@ function AuthForm() {
                   value={values.email}
                   onChange={handleChange}
                   type="email"
-                  className={errors.email ? "block input_field input-error" : "block input_field"}
+                  className={
+                    errors.email
+                      ? "block input_field input-error"
+                      : "block input_field"
+                  }
                   id="email"
                   required
                   ref={emailInputRef}
                 />
-                {errors.email && touched.email && <div className="max-w-50"><p className="text-red-500">{errors.email}</p></div>}
+                {errors.email && touched.email && (
+                  <div className="max-w-50">
+                    <p className="text-red-500">{errors.email}</p>
+                  </div>
+                )}
               </div>
 
               <div className="form-control">
@@ -153,21 +204,37 @@ function AuthForm() {
                   onChange={handleChange}
                   type="password"
                   id="password"
-                  className={errors.password ? "block input_field input-error" : "block input_field"}
+                  className={
+                    errors.password
+                      ? "block input_field input-error"
+                      : "block input_field"
+                  }
                   required
                   ref={passwordInputRef}
                 />
-                {errors.password && touched.password && <p className="text-red-500">{errors.password}</p>}
+                {errors.password && touched.password && (
+                  <p className="text-red-500 max-w-fit">{errors.password}</p>
+                )}
               </div>
 
               <div>
                 {isLogin ? (
-                  <button disabled={isSubmitting} type='submit' className="btn block rounded-md gr-btn">Login</button>
+                  <button
+                    disabled={isSubmitting}
+                    type="submit"
+                    className="btn block rounded-md gr-btn"
+                  >
+                    Login
+                  </button>
                 ) : (
                   <div>
-                  <button disabled={isSubmitting} type='submit' className="btn block rounded-md gr-btn">
-                    Create Account
-                  </button>
+                    <button
+                      disabled={isSubmitting}
+                      type="submit"
+                      className="btn block rounded-md gr-btn"
+                    >
+                      Create Account
+                    </button>
                   </div>
                 )}
                 <button className="btn mt-5 " onClick={switchAuthModeHandler}>
@@ -175,15 +242,14 @@ function AuthForm() {
                 </button>
               </div>
             </form>
-
           </div>
 
           <div className="bg-yellow-400 mx-auto w-full p-10 lg:rounded-r-lg rounded-b-lg lg:rounded-bl-none">
             <div className="rounded-lg">
-              <h3 className="text-2xl">
-             Login with Crypto Wallet
+              <button className="text-2xl">
+                Login with Crypto Wallet
                 <br />
-              </h3>
+              </button>
             </div>
           </div>
         </div>

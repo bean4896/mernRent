@@ -3,8 +3,8 @@ import Masonry from 'react-masonry-css'
 
 const HouseList = (props) => {    
     const breakpointColumnsObj = {
-        default: 2,
-        1100: 2,
+        default: 3,
+        1100: 3,
         700: 2,
         500: 1
       };    
@@ -17,9 +17,14 @@ const HouseList = (props) => {
                 // houseItem is a component that takes in a house object as a prop
                 <HouseItem
                     key={house.id}
+                    id={house.id}
                     image={house.image}
                     title={house.title}
                     date={house.date}
+                    address={house.address}
+                    price={house.price}
+                    area={house.area}
+                    phone={house.phone}
                     description={house.description}
                />
             ))}

@@ -1,14 +1,27 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Open+Sans:wght@400;700&display=swap");
+body {
+  font-family: "Open Sans", "Poppins", sans-serif;
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Poppins", sans-serif;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 @layer components {
   .nav-container {
-    @apply max-w-[940px] m-auto;
+    @apply max-w-[1140px] m-auto;
   }
   .footer-container {
-    @apply max-w-[940px] m-auto;
+    @apply max-w-[1140px] m-auto;
   }
   /* ... */
 }
@@ -41,8 +54,34 @@
   @apply px-2 py-1 font-bold bg-[#ebfbee] rounded-md text-[#46dd66] dark:bg-[#1c2c26] text-[#46dd66]
 }
 
+.btn_error {
+  @apply px-2 py-1 font-bold bg-[#fdebeb] rounded-md text-[#ff4d4d] dark:bg-[#1c2c26] text-[#ff4d4d]
+}
+
 .btn_active {
   @apply px-2 py-1 font-bold bg-[#1c2c26] rounded-md text-[#46dd66] dark:bg-[#84ceb356] text-[#46dd66]
+}
+
+.nftWrapper {
+@apply bg-[#d9f5ad] dark:bg-[#344637] rounded-xl p-4 my-10 shadow-xl shadow-green-500/40
+}
+
+.detailWrapper {
+  @apply rounded-xl p-4 border-neutral-300 dark:border-black border-[1px] dark:bg-[#292929] my-10
+}
+.detailRow {
+  @apply p-2 bg-neutral-200 rounded-md dark:bg-[#383838]
+}
+
+.nftRow {
+  @apply shadow-[inset_5px_5px_10px_rgba(0,0,0,0.6)] shadow-green-500/40 rounded-xl p-4 my-10 bg-[#84ceb356]
+  /* background: #d9f5ad;;
+  padding: 10px;
+  border: none;
+  box-shadow: inset 5px 5px 10px rgba(170, 196, 119, 0.6),
+  inset -5px -5px 12px rgba(241, 255, 218, 0.8);
+  outline: none;
+  border-radius: 10px; */
 }
 
 .containerBorder {
@@ -50,6 +89,14 @@
   border-style: solid;
  border-radius: 15px;
  @apply dark:bg-[#1f1f1f] bg-white 
+}
+
+.house-item {
+  transition: all 0.2s ease-in-out;
+}
+
+.house-item:hover {
+  @apply transform opacity-80;
 }
 
 .my-masonry-grid {
@@ -90,6 +137,7 @@
 button:disabled {
   opacity: 0.35;
 }
+
 .form-input {
   @apply block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-offset-gray-100 focus:border-green-700 sm:text-sm;
 }
@@ -109,18 +157,4 @@ button:disabled {
 
 .input_field {
   @apply border border-[2px] p-2 rounded-md w-full;
-}
-
-body {
-  font-family: "Open Sans", "Poppins", sans-serif;
-  margin: 0;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Poppins", sans-serif;
 }
