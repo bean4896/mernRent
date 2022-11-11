@@ -55,7 +55,7 @@ h6 {
 }
 
 .btn_error {
-  @apply px-2 py-1 font-bold bg-[#fdebeb] rounded-md text-[#ff4d4d] dark:bg-[#1c2c26] text-[#ff4d4d]
+  @apply px-2 py-1 font-bold bg-[#fdebeb] rounded-md text-[#ff4d4d] dark:bg-[#373737] text-[#ff4d4d]
 }
 
 .btn_active {
@@ -122,11 +122,11 @@ h6 {
   /* change div to reference your elements you put in <Masonry> */
   margin-bottom: 30px;
 }
-.btn:hover, .btn_active:hover {
+.btn:hover, .btn_active:hover, .btn_error:hover {
   transform: translateY(-0.2em);
   opacity: 0.8;
 }
-.btn, .btn_active {
+.btn, .btn_active, .btn_error {
   transition: all 0.2s ease-in-out;
 }
 .form-control {

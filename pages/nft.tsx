@@ -1,11 +1,12 @@
 import React from "react";
 import Masonry from "react-masonry-css";
+import Image from "next/image";
 
 const kobe_items = [
   {
     id: 1,
     image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/1280px-Stadtbild_M%C3%BCnchen.jpg",
+      "/../public/images/nft/img-o.jpeg",
     name: "Nike Kobe 1 Protro",
     releasteDate: "2021-01-01",
     season: "All",
@@ -15,7 +16,7 @@ const kobe_items = [
   {
     id: 2,
     image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/1280px-Stadtbild_M%C3%BCnchen.jpg",
+      "/../public/images/nft/img-o.jpeg",
     name: "Adidas Kobe 2 Protro",
     releasteDate: "2021-01-01",
     season: "All",
@@ -25,7 +26,7 @@ const kobe_items = [
   {
     id: 3,
     image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/1280px-Stadtbild_M%C3%BCnchen.jpg",
+      "/../public/images/nft/img-o.jpeg",
     name: "Nike Kobe 3 Protro",
     releasteDate: "2021-01-01",
     season: "All",
@@ -35,7 +36,7 @@ const kobe_items = [
   {
     id: 4,
     image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/1280px-Stadtbild_M%C3%BCnchen.jpg",
+      "/../public/images/nft/img-o.jpeg",
     name: "Nike Kobe 4 Protro",
     releasteDate: "2021-01-01",
     season: "All",
@@ -45,7 +46,7 @@ const kobe_items = [
   {
     id: 5,
     image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/1280px-Stadtbild_M%C3%BCnchen.jpg",
+      "/../public/images/nft/img-o.jpeg",
     name: "Zoom Kobe 5",
     releasteDate: "2021-01-01",
     season: "All",
@@ -55,7 +56,7 @@ const kobe_items = [
   {
     id: 6,
     image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/1280px-Stadtbild_M%C3%BCnchen.jpg",
+      "/../public/images/nft/img-o.jpeg",
     name: "Zoom Kobe 6",
     releasteDate: "2021-01-01",
     season: "All",
@@ -65,7 +66,7 @@ const kobe_items = [
   {
     id: 7,
     image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/1280px-Stadtbild_M%C3%BCnchen.jpg",
+      "/../public/images/nft/img-o.jpeg",
     name: "Zoom Kobe 7",
     releasteDate: "2021-01-01",
     season: "All",
@@ -75,7 +76,7 @@ const kobe_items = [
   {
     id: 8,
     image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/1280px-Stadtbild_M%C3%BCnchen.jpg",
+      "/../public/images/nft/img-o.jpeg",
     name: "Zoom Kobe 8",
     releasteDate: "2021-01-01",
     season: "All",
@@ -85,7 +86,7 @@ const kobe_items = [
   {
     id: 9,
     image:
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1399&q=80",
+      "/../public/images/nft/img-o.jpeg",
     name: "Zoom Kobe 10",
     releasteDate: "2021-01-01",
     season: "All",
@@ -94,7 +95,7 @@ const kobe_items = [
   },
   {
     id: 10,
-    image: "",
+    image: "/../public/images/nft/img-o.jpeg",
     name: "Zoom Kobe X High",
     releasteDate: "2021-01-01",
     season: "All",
@@ -104,7 +105,7 @@ const kobe_items = [
   {
     id: 11,
     image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/1280px-Stadtbild_M%C3%BCnchen.jpg",
+      "/../public/images/nft/img-o.jpeg",
     name: "Zoom Kobe XI",
     releasteDate: "2021-01-01",
     season: "All",
@@ -130,10 +131,12 @@ function items() {
         {kobe_items.map((item) => (
           <div className="max-w-[400px]">
             <div className="group relative block bg-gray-900 rounded-md">
-              <img
+              <Image
                 className="absolute rounded-md inset-0 h-full w-full object-cover group-hover:opacity-50"
                 src={item.image}
                 alt={item.name}
+                width={400}
+                height={400}
               />
               <div className="relative p-2">
                 <div className="mt-40">

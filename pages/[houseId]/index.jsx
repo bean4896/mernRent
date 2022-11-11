@@ -1,7 +1,7 @@
 
 import HouseDetail from '../../components/houses/HouseDetail';
 import { MongoClient, ObjectId } from 'mongodb';
-import { Fragment } from 'react';
+
 
 
 function houseDetailPage(props) {

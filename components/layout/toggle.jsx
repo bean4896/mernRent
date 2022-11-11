@@ -1,39 +1,39 @@
+import React from "react";
+import { useTheme } from "next-themes";
+import { useEffect } from "react";
 
-import React from 'react';
-import { useTheme } from 'next-themes';
-import { useEffect } from 'react';
 
 const Toggle = () => {
   const { theme, setTheme } = useTheme();
 
   useEffect(() => {
-    setTheme('light');
+    setTheme("light");
   }, []);
   return (
-    <div className='ml-4'>
-      {theme === 'dark' ? (
+    <div className="ml-4">
+      {theme === "dark" ? (
         <button
-          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
           className="btn shadow-none p-1 focus:outline-none text-lg rounded-md outline-none ring-transparent cursor-pointer"
         >
           <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className="w-6 h-6"
           >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeWidth="2"
-              d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-            ></path>
+              d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+            />
           </svg>
         </button>
       ) : (
         <button
-          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
           className="btn focus:outline-none shadow-none p-1 text-lg rounded-md outline-none ring-transparent cursor-pointer"
         >
           <svg
@@ -55,7 +55,5 @@ const Toggle = () => {
     </div>
   );
 };
-
-
 
 export default Toggle;

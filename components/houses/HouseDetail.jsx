@@ -1,5 +1,6 @@
 
 function HouseDetail(props) {
+  
   let areaclass = "";
   if (props.area === "redline") {
     areaclass = "text-white rounded w-fit py-1 px-2 bg-red-500 my-4 flex-row flex";
