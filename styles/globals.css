@@ -55,7 +55,7 @@ h6 {
 }
 
 .btn_error {
-  @apply px-2 py-1 font-bold bg-[#fdebeb] rounded-md text-[#ff4d4d] dark:bg-[#373737] text-[#ff4d4d]
+  @apply px-2 py-1 font-bold bg-[#fdebeb] rounded-md text-[#ff4d4d] dark:bg-[#373737] text-[#ff4d4d] my-0 mx-auto block
 }
 
 .btn_active {
@@ -157,4 +157,37 @@ button:disabled {
 
 .input_field {
   @apply border border-[2px] p-2 rounded-md w-full;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.modal {
+  padding: 2em;
+  position: fixed;
+  top: 40vh;
+  left: 10%;
+  width: 80%;
+  z-index: 100;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .modal {
+    padding: 2em;
+    left: calc(50% - 11rem);
+    width: 22rem;
+  }
 }

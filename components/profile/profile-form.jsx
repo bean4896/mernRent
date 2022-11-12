@@ -31,6 +31,8 @@ function ProfileForm(props) {
                 oldPassword : enteredOldPassword,
                 newPassword : enteredNewPassword,
               })
+             oldPasswordRef.current.value = '';
+              newPasswordRef.current.value = '';
             // }
             // else {
             //   alert("Please enter all fields");
