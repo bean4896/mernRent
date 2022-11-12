@@ -191,3 +191,13 @@ button:disabled {
     width: 22rem;
   }
 }
+
+.loader {
+  position: fixed;
+  width: 40%;
+  text-align: center;
+  top: 25%;
+  left: 50%;
+  padding: 20px;
+  transform: translate(-50%, 0);
+}
