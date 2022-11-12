@@ -131,13 +131,13 @@ function items() {
         {kobe_items.map((item) => (
           <div className="max-w-[400px]">
             <div className="group relative block bg-gray-900 rounded-md">
-              <Image
+              {/* <Image
                 className="absolute rounded-md inset-0 h-full w-full object-cover group-hover:opacity-50"
                 src={item.image}
                 alt={item.name}
                 width={400}
                 height={400}
-              />
+              /> */}
               <div className="relative p-2">
                 <div className="mt-40">
                   <div className="translate-y-8 transform opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100">

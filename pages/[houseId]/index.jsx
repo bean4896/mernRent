@@ -20,11 +20,11 @@ function houseDetailPage(props) {
 }
 
 // url: /houses/[houseId]/index.jsx 
+// getStaicProps is a function that is executed by nextjs before the component is rendered
 export async function getStaticPaths() {
  // fallback: false means other routes should 404.
 const client = await MongoClient.connect('mongodb+srv://iverson3:Slowhand.1996@test-one.bvlhpok.mongodb.net/house?retryWrites=true&w=majority');
 const db = client.db(); 
-
 const houseCollection = db.collection('property');
 
 const houses = await houseCollection.find({}, {_id:1}).toArray();

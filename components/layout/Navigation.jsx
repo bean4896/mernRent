@@ -22,7 +22,7 @@ const Navbar = () => {
   return (
     <header className="bg-white dark:bg-zinc-900 border-b-[0.5px] dark:border-neutral-600 ">
       <div className="nav-container">
-        <nav className="flex flex-row p-5 mx-auto items-center justify-between">
+        <nav className="flex flex-row p-4 mx-auto items-center justify-between">
           <div className="flex flex-row">
             <div className="mr-4">
               <Link href="/" className={router.pathname == "/" ? "Nav" : "Nav"}>
