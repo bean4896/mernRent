@@ -1,5 +1,5 @@
 import NewHouse from "../components/houses/NewHouse";
-
+import { getSession } from "next-auth/react";
 
 function NewhousePage() {
    // addhouseHandler is a function that is passed to Newhouse component, and it is executed when the form is submitted
@@ -25,6 +25,24 @@ function NewhousePage() {
       </div>
     </>
   );
+}
+
+export async function getServerSideProps(context) {
+  const session = await getSession({req: context.req});
+
+  // if user is not logged in, redirect to auth page
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/auth',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: { session },
+  };
 }
 
 export default NewhousePage;

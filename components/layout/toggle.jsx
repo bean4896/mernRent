@@ -5,9 +5,14 @@ import { useEffect } from "react";
 
 const Toggle = () => {
   const { theme, setTheme } = useTheme();
+  const isDarkMode = () => window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
 
   useEffect(() => {
-    setTheme("light");
+    if (isDarkMode()) {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
   }, []);
   return (
     <div className="ml-4">

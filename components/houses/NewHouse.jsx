@@ -10,10 +10,10 @@ function NewHouse(props) {
       date: "",
       price: "",
       address: "",
-      area:"",
+      area: "",
       description: "",
-  },
-});
+    },
+  });
   // useref is a hook that allows us to access the value of an input element
   const titleInputRef = useRef();
   const imageInputRef = useRef();
@@ -98,7 +98,7 @@ function NewHouse(props) {
               ref={titleInputRef}
             />
           </div>
-          
+
           <div className="form-control">
             <label htmlFor="image" className="block">
               house Image Url
@@ -140,23 +140,47 @@ function NewHouse(props) {
             />
           </div>
 
-  <fieldset className="form-control">
-    <legend>Area: {area}</legend>
-    <div>
-      <input type="radio" id="downtown" name="area" value="downtown" onChange={e=>setArea(e.target.value)}  />
-      <label className='ml-2' htmlFor="Downtown">Downtown</label>
-    </div>
+          <fieldset className="form-control">
+            <legend>Area: {area}</legend>
+            <div>
+              <input
+                type="radio"
+                id="downtown"
+                name="area"
+                value="downtown"
+                onChange={(e) => setArea(e.target.value)}
+              />
+              <label className="ml-2" htmlFor="Downtown">
+                Downtown
+              </label>
+            </div>
 
-    <div>
-      <input type="radio" id="purpleline" name="area" value="purpleline" onChange={e=>setArea(e.target.value)}  />
-      <label className='ml-2' htmlFor="purpleline">Purple Line</label>
-    </div>
+            <div>
+              <input
+                type="radio"
+                id="purpleline"
+                name="area"
+                value="purpleline"
+                onChange={(e) => setArea(e.target.value)}
+              />
+              <label className="ml-2" htmlFor="purpleline">
+                Purple Line
+              </label>
+            </div>
 
-    <div>
-      <input type="radio" id="redline" name="area" value="redline" onChange={e=>setArea(e.target.value)} />
-      <label className='ml-2' htmlFor="redline">Red Line</label>
-    </div>
-</fieldset>
+            <div>
+              <input
+                type="radio"
+                id="redline"
+                name="area"
+                value="redline"
+                onChange={(e) => setArea(e.target.value)}
+              />
+              <label className="ml-2" htmlFor="redline">
+                Red Line
+              </label>
+            </div>
+          </fieldset>
 
           <div className="form-control">
             <label htmlFor="Price" className="block">
@@ -178,7 +202,7 @@ function NewHouse(props) {
               type="text"
               required
               id="address"
-             className="form-input"
+              className="form-input"
               ref={addressInputRef}
             />
           </div>

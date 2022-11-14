@@ -1,7 +1,7 @@
 import AuthForm from '../components/auth/auth-form';
 import { useEffect, useState } from 'react';
 import { getSession } from 'next-auth/react';
-import Loader from '../components/ui/loader';
+import Loader from '../components/ui/LoaderCircle';
 
 
 

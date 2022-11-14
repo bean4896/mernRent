@@ -1,9 +1,8 @@
-
 function HouseDetail(props) {
-  
   let areaclass = "";
   if (props.area === "redline") {
-    areaclass = "text-white rounded w-fit py-1 px-2 bg-red-500 my-4 flex-row flex";
+    areaclass =
+      "text-white rounded w-fit py-1 px-2 bg-red-500 my-4 flex-row flex";
   } else if (props.area === "downtown") {
     areaclass = "text-white rounded w-fit p-1 bg-yellow-500 my-4 flex-row flex";
   } else if (props.area === "purpleline") {
@@ -30,15 +29,29 @@ function HouseDetail(props) {
         </div>
         <div className="block">Address:</div>
         <address className="detailRow">{props.address}</address>
-        <div className="rounded-md my-4 min-h-[100px] detailRow">
+        <div className="rounded-md my-4 min-h-[100px] max-w-[450px] detailRow">
           {props.description}
         </div>
-         <a href={`tel:${props.phone}`} className="flex flex-row btn py-4 my-4 text-l w-fit">
-         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
-  <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
-</svg>
-Contact
-         </a>
+        <a
+          href={`tel:${props.phone}`}
+          className="flex flex-row btn py-4 my-4 text-l w-fit"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className="w-6 h-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3"
+            />
+          </svg>
+          Contact
+        </a>
       </div>
     </section>
   );

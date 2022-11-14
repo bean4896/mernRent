@@ -1,12 +1,50 @@
-
-
+import NewNfT from '../components/nfts/NewNft';
+import { getSession } from 'next-auth/react';
 
 
 const newNftPage = () => {
+
+   // addhouseHandler is a function that is passed to Newhouse component, and it is executed when the form is submitted
+   //  it receives the entered data as an argument
+   async function addnftHandler(nftData){
+    const response = await fetch("/api/new-nft", {
+      method: "POST",
+      body: JSON.stringify(nftData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    console.log(data);
+    // go back to home page after submit new house
+    // router.push("/");
+  }
+
     return (
-        <div className="flex items-center align-center">
-            <h1>New NFT Page</h1>
+        <>
+        <div className="bg-[#f3f4f6] dark:bg-black min-h-screen">
+          <NewNfT onAddNft={addnftHandler} />
         </div>
+      </>
     )
 }
+
+export async function getServerSideProps(context) {
+    const session = await getSession({req: context.req});
+  
+    // if user is not logged in, redirect to auth page
+    if (!session) {
+      return {
+        redirect: {
+          destination: '/auth',
+          permanent: false,
+        },
+      };
+    }
+  
+    return {
+      props: { session },
+    };
+  }
+
 export default newNftPage;

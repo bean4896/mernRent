@@ -7,38 +7,42 @@ function ProfileForm(props) {
   const [changePassword, setChangePassword] = useState(false);
   const oldPasswordRef = useRef();
   const newPasswordRef = useRef();
-  const { account, isConnected } = useAccount()
+  const { account, isConnected } = useAccount();
 
   const changePasswordSwitch = (e) => {
     e.preventDefault();
     setChangePassword(!changePassword);
   };
 
+  // change password handler
   const submitHandler = (event) => {
     event.preventDefault();
+
     // const enteredName = nameRef.current.value;
     // const enteredContact = contactRef.current.value;
-    const enteredOldPassword = oldPasswordRef.current.value;
-    const enteredNewPassword = newPasswordRef.current.value;
+    const enteredOldPassword = oldPasswordRef.current?.value;
+    const enteredNewPassword = newPasswordRef.current?.value;
 
     const profileData = {
-      // name: enteredName,
-      // contact: enteredContact,
       oldPassword: enteredOldPassword,
       newPassword: enteredNewPassword,
     };
     console.log(profileData);
-    // if (profileData.length !== 0) {
-    props.onUpdateProfile({
-      oldPassword: enteredOldPassword,
-      newPassword: enteredNewPassword,
-    });
-    oldPasswordRef.current.value = "";
-    newPasswordRef.current.value = "";
-    // }
-    // else {
-    //   alert("Please enter all fields");
-    // }
+
+    if (
+      profileData.newPassword !== undefined &&
+      profileData.oldPassword !==  undefined
+    ) {
+      props.onUpdateProfile({
+        oldPassword: enteredOldPassword,
+        newPassword: enteredNewPassword,
+      })
+      oldPasswordRef.current.value = "";
+      newPasswordRef.current.value = "";
+    }
+    else {
+      alert("Nothing to update");
+    }
   };
 
   const router = useRouter();
@@ -48,7 +52,6 @@ function ProfileForm(props) {
     router.push("/");
     signOut();
   }
-
 
   return (
     <div className="flex items-center justify-center p-12">
@@ -72,8 +75,12 @@ function ProfileForm(props) {
           <div className="form-control">
             <label className="block">Wallet :</label>
             <Web3Button />
-          {account.isConnected && <div className="max-w-full mt-2"><label className="block">Address :</label>
-          <div className="address">{account.address}</div></div> }
+            {account.isConnected && (
+              <div className="max-w-full mt-2">
+                <label className="block">Address :</label>
+                <div className="address">{account.address}</div>
+              </div>
+            )}
           </div>
 
           {/* <div className='form-control'>

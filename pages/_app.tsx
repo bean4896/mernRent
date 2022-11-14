@@ -5,9 +5,10 @@ import { SessionProvider } from "next-auth/react";
 import Layout from "../components/Layout/Layout";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import Loader from "../components/ui/loader";
+import LoaderCircle from "../components/ui/LoaderCircle";
 import { Web3Modal } from "@web3modal/react";
 import { chains, providers } from "@web3modal/ethereum";
+import { url } from "inspector";
 
 const config = {
   projectId: 'bda67da2037385ea986471dbb6622f22',
@@ -18,10 +19,10 @@ const config = {
   },
   autoConnect: false
 }
+
 function Loading() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-
   useEffect(() => {
     //routeChangeStart
     //routeChangeComplete
@@ -32,7 +33,7 @@ function Loading() {
       url === router.asPath &&
       setTimeout(() => {
         setLoading(false);
-      }, 100);
+      },100);
     router.events.on("routeChangeStart", handleStart);
     router.events.on("routeChangeComplete", handleComplete);
     router.events.on("routeChangeError", handleComplete);
@@ -42,22 +43,17 @@ function Loading() {
       router.events.off("routeChangeComplete", handleComplete);
       router.events.off("routeChangeError", handleComplete);
     };
-  });
-  return (
-    loading && (
-      <>
-        <Loader />
-      </>
-    )
-  );
+  })
+  return loading ? <LoaderCircle /> : null;
 }
+
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
+      <Loading />
       <SessionProvider session={pageProps.session}>
       <Web3Modal config={config} />
-        <Loading />
         <ThemeProvider attribute="class">
           <Layout>
             <Component {...pageProps} />
