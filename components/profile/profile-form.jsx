@@ -1,4 +1,4 @@
-import { signOut, getSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useRef, useState } from "react";
 import { Web3Button, useAccount } from "@web3modal/react";
@@ -45,12 +45,10 @@ function ProfileForm(props) {
     }
   };
 
-  const router = useRouter();
- const session = getSession();
+ const { session, loading } = useSession();
 
   function LogoutHandler() {
     signOut();
-    router.push("/");
   }
 
   return (
