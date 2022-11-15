@@ -13,7 +13,6 @@ export default NextAuth({
     // Configure one or more authentication providers, see https://next-auth.js.org/configuration/providers
     providers: [
         CredentialsProvider({
-                
             async authorize(credentials) {
 
                 const client = await connectToDatabase();

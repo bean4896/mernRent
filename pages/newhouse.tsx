@@ -27,22 +27,22 @@ function NewhousePage() {
   );
 }
 
-export async function getServerSideProps(context) {
-  const session = await getSession({req: context.req});
+// export async function getServerSideProps(context) {
+//   const session = await getSession({req: context.req});
 
-  // if user is not logged in, redirect to auth page
-  if (!session) {
-    return {
-      redirect: {
-        destination: '/auth',
-        permanent: false,
-      },
-    };
-  }
+//   // if user is not logged in, redirect to auth page
+//   if (!session) {
+//     return {
+//       redirect: {
+//         destination: '/auth',
+//         permanent: false,
+//       },
+//     };
+//   }
 
-  return {
-    props: { session },
-  };
-}
+//   return {
+//     props: { session },
+//   };
+// }
 
 export default NewhousePage;

@@ -4,7 +4,6 @@ import { getSession } from 'next-auth/react';
 import Loader from '../components/ui/LoaderCircle';
 
 
-
 const LoginPage = () => {
         const [isLoading, setIsLoading] = useState(true);
         useEffect(() => {
