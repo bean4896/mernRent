@@ -1,7 +1,8 @@
 import { signOut, useSession } from "next-auth/react";
-import { useRouter } from "next/router";
 import { useRef, useState } from "react";
+import { useRouter } from "next/router";
 import { Web3Button, useAccount } from "@web3modal/react";
+
 
 function ProfileForm(props) {
   const [changePassword, setChangePassword] = useState(false);
@@ -45,8 +46,10 @@ function ProfileForm(props) {
     }
   };
   const { data: session, status } = useSession();
+  const router = useRouter();
 
-  function LogoutHandler() {
+  function LogoutHandler(e) {
+    e.preventDefault();
     signOut();
   }
 

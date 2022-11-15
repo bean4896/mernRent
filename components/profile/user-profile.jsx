@@ -2,7 +2,7 @@ import ProfileForm from "./profile-form";
 import { useState } from "react";
 import Modal from "../ui/Modal";
 
-const UserProfile = (nmd) => {
+const UserProfile = () => {
   const [errorModal, setErrorModal] = useState(false);
   const errorHandler = () => {
     setErrorModal(null);
