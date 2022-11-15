@@ -61,7 +61,7 @@ function Loading() {
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
-      {/* <Loading /> */}
+      <Loading />
       <SessionProvider session={pageProps.session}>
       <Web3Modal config={config} />
         <ThemeProvider attribute="class">
