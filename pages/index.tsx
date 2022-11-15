@@ -46,6 +46,7 @@ export async function getStaticProps() {
         id: house._id.toString()
       }))
     },
+    revalidate: 10,
   }
 }
 
