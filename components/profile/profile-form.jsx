@@ -44,8 +44,7 @@ function ProfileForm(props) {
       alert("Nothing to update");
     }
   };
-
- const { session, loading } = useSession();
+  const { data: session, status } = useSession();
 
   function LogoutHandler() {
     signOut();
