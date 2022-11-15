@@ -9,7 +9,7 @@ export default NextAuth({
     session: {
         jwt: true,
     },
-
+    // secret:process.env.SECRET,
     // Configure one or more authentication providers, see https://next-auth.js.org/configuration/providers
     providers: [
         CredentialsProvider({

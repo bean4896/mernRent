@@ -6,10 +6,9 @@ import { MongoClient } from 'mongodb';
 async function handler(req, res) {
   if (req.method === 'POST') {
     const data = req.body;
+    const connectionString = `mongodb+srv://${process.env.mongodb_username}:${process.env.mongodb_password}@${process.env.mongodb_clustername}.bvlhpok.mongodb.net/${process.env.mongodb_database}?retryWrites=true&w=majority`;
     // connect to db
-    const client = await MongoClient.connect(
-      'mongodb+srv://iverson3:Slowhand.1996@test-one.bvlhpok.mongodb.net/house?retryWrites=true&w=majority'
-    );
+    const client = await MongoClient.connect((connectionString));
     const db = client.db(); 
 
     const meetupsCollection = db.collection('property');
