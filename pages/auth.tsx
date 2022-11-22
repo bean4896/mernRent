@@ -15,7 +15,7 @@ const LoginPage = () => {
                     setIsLoading(false);
                 }
             });
-        }, []);
+        }, []); 
 
     if( isLoading ) {
         return <>
