@@ -1,15 +1,16 @@
 // .components/Search/index.js
 
 import algoliasearch from "algoliasearch/lite";
+import { useState } from "react";
 import { orderBy } from "lodash";
-
-
 import {
   InstantSearch,
   Hits,
   Highlight,
+  HitsPerPage,
   Snippet,
   SearchBox,
+  Pagination,
   CurrentRefinements,
   useSearchBox,
 } from "react-instantsearch-hooks-web";
@@ -19,13 +20,12 @@ const searchClient = algoliasearch(
   process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY
 );
 
-
 const indexName = "mern";
 
 function Hit({ hit }) {
   return (
     <div>
-    <button/>
+      <button />
       <h2>
         <Highlight attribute="title" hit={hit} />
       </h2>
@@ -48,7 +48,6 @@ function PopularQueries({ queries, ...props }) {
   );
 }
 
-
 export default function Search(props) {
   return (
     <>
@@ -58,30 +57,27 @@ export default function Search(props) {
         integrity="sha256-TehzF/2QvNKhGQrrNpoOb2Ck4iGZ1J/DI4pkd2oUsBc="
         crossorigin="anonymous"
       />
-      <div className="backdrop -z-10" onClick={props.onConfirm}>
-        <div className="lex-row align-middle justify-center"> 
+      <div className="backdrop -z-10">
+        <div className="searchmodal">
           <InstantSearch
-          className='z-100'
+            className="z-100"
             searchClient={searchClient}
             indexName={indexName}
-            initialUiState={{
-              [indexName]: {
-                query: 'Test query',
-                page: 3,
-              },
-            }}
           >
-            <SearchBox
-              placeholder="Search for house"
-              translations={{
-                submitButtonTitle: "Envoyer",
-              }}
-            />
+            <SearchBox placeholder="Search for house" />
             <Hits hitComponent={Hit} />
+            <HitsPerPage
+            className="hidden"
+            defaultRefinement={12}
+              items={[
+                { label: "4 hits per page", value: 4, default: true },  
+              ]}
+            />
+              <Pagination className="mt-4" defaultRefinement={2} />
             <CurrentRefinements
               transformItems={(items) => orderBy(items, "attribute", "asc")}
             />
-            <PopularQueries queries={['downtown', 'redline']} />
+            <PopularQueries queries={["downtown", "redline"]} />
           </InstantSearch>
         </div>
       </div>

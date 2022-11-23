@@ -14,6 +14,7 @@ function Home(props) {
     setSearchTerm(!searchTerm);
     document.querySelector("html").style.overflow = "scroll";
   }
+  
   return (
     <Fragment>
     <div className="max-w-[1140px] mt-10 m-auto">
@@ -24,7 +25,7 @@ function Home(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
         <button onClick={SearchHandler} >Search</button>
-        {searchTerm && <Search/>}
+        {searchTerm && <Search onConfirm={SearchHandler} />}
         <HouseList houses={sortedhouses} />
       </div>
     </Fragment>
