@@ -25,7 +25,7 @@ function Home(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
         <button onClick={SearchHandler} >Search</button>
-        {searchTerm && <Search onConfirm={SearchHandler} />}
+        {searchTerm && <Search onDrop={SearchHandler} />}
         <HouseList houses={sortedhouses} />
       </div>
     </Fragment>

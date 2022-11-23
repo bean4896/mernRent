@@ -57,10 +57,9 @@ export default function Search(props) {
         integrity="sha256-TehzF/2QvNKhGQrrNpoOb2Ck4iGZ1J/DI4pkd2oUsBc="
         crossorigin="anonymous"
       />
-      <div className="backdrop -z-10">
-        <div className="searchmodal">
+      <div className="backdrop" onClick={props.onDrop}>
+        <div className="searchmodal" onClick={e => e.stopPropagation()}>
           <InstantSearch
-            className="z-100"
             searchClient={searchClient}
             indexName={indexName}
           >
