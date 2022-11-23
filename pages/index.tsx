@@ -3,12 +3,17 @@ import { Fragment } from 'react';
 import HouseList from '../components/houses/HouseList';
 import { connectToDatabase } from '../lib/db';
 import { sortDataByDate } from '../components/houses/SortData';
-import { useMemo } from 'react';
-
+import { useMemo,useState } from 'react';
+import Search from '../components/Search'
 
 function Home(props) {
+  const [searchTerm, setSearchTerm] = useState(false);
   const sortedMemo = sortDataByDate(props.houses);
   const sortedhouses = useMemo(() => sortedMemo, [sortedMemo]);
+  const SearchHandler = () => {
+    setSearchTerm(!searchTerm);
+    document.querySelector("html").style.overflow = "scroll";
+  }
   return (
     <Fragment>
     <div className="max-w-[1140px] mt-10 m-auto">
@@ -18,6 +23,8 @@ function Home(props) {
          content="Next houses" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+        <button onClick={SearchHandler} >Search</button>
+        {searchTerm && <Search/>}
         <HouseList houses={sortedhouses} />
       </div>
     </Fragment>
