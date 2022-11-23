@@ -26,9 +26,9 @@ function Hit({ hit }) {
   return (
     <div>
       <button />
-      <h2>
+      <h3 className=" dark:text-neutral-900">
         <Highlight attribute="title" hit={hit} />
-      </h2>
+      </h3>
       <Snippet hit={hit} attribute="area" />
     </div>
   );
@@ -62,6 +62,7 @@ export default function Search(props) {
           <InstantSearch
             searchClient={searchClient}
             indexName={indexName}
+            className="dark: bg-black"
           >
             <SearchBox placeholder="Search for house" />
             <Hits hitComponent={Hit} />
