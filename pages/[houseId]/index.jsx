@@ -1,29 +1,9 @@
 import HouseDetail from "../../components/houses/HouseDetail";
 import { MongoClient, ObjectId } from "mongodb";
-// import Loader from "../../components/ui/LoaderCircle";
-// import { useEffect, useState } from "react";
 
 function houseDetailPage(props) {
-  // const [isLoading, setIsLoading] = useState(true);
-  // useEffect(
-  //   () => {
-  //     let timer1 = setTimeout(() => setIsLoading(false), 500);
-  //     // this will clear Timeout
-  //     // when component unmount like in willComponentUnmount
-  //     // and show will not change to true
-  //     return () => {
-  //       clearTimeout(timer1);
-  //     };
-  //   },
-  //   // useEffect will run only one time with empty []
-  //   // if you pass a value to array,
-  //   // than clearTimeout will run every time
-  //   // this value changes (useEffect re-run)
-  //   []
-  // );
-
   return (
-    // <>{isLoading && <Loader />}
+    <>
     <HouseDetail
       image={props.houseData.image}
       title={props.houseData.title}
@@ -34,7 +14,7 @@ function houseDetailPage(props) {
       address={props.houseData.address}
       description={props.houseData.description}
     />
-    //  </>
+   </>
   );
 }
 
@@ -60,6 +40,8 @@ export async function getStaticPaths() {
 
 // getStaticProps is called at build time on server-side.
 export async function getStaticProps(context) {
+
+  
   const houseId = context.params.houseId;
   console.log(houseId);
 
